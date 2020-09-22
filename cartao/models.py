@@ -6,8 +6,8 @@ class Cartao(models.Model):
     nome = models.CharField("Nome", max_length = 200)
     email = models.EmailField()
     renda = models.CharField("Renda", blank=False, max_length=7)
-    pontuacao = models.IntegerField("Pontuação",max_length=3, editable= False ,default= 0)#default
-    aprovacao = models.BooleanField("Aprovado", editable=False, default= False) #default
+    pontuacao = models.IntegerField("Pontuação", editable= False ,default= 0)#default
+    aprovacao = models.CharField("Cartão", editable=False, max_length= 15, default="Reprovado") #default
     credito = models.FloatField("Crédito", editable=False, default = 0)
     pedido_em = models.DateTimeField("Pedido em", auto_now=True)
 
@@ -17,10 +17,10 @@ class Cartao(models.Model):
         import random
         self.pontuacao = random.randint (1, 999)
         if int(self.pontuacao <= 299):
-            self.aprovacao = False
+            self.aprovacao = "Reprovado"
             self.credito = 0
         else:
-            self.aprovacao = True
+            self.aprovacao = "Aprovado"
             if (int (self.pontuacao) >= 300) and (int (self.pontuacao) <= 599):
                 self.credito = 1000
             elif (int (self.pontuacao) >= 600) and (int (self.pontuacao) <= 799):
@@ -31,13 +31,7 @@ class Cartao(models.Model):
                 self.credito = 1000000
         super ().save (*args, **kwargs)
 
-
-    def get_credito(self):
-        "Crédito do cliente"
-        if int (self.pontuacao) <= 299:
-            return 0 * int(self.renda)
-
-
+		
     def get_pedido_em(self):
         return self.pedido_em.strftime('%Y-%m-%dT%H:%M')
 

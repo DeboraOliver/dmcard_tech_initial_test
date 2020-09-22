@@ -14,7 +14,6 @@ class CardList extends Component {
             <th>Nome</th>
             <th>Email</th>
             <th>Renda</th>
-            <th>Pedido em</th>
 			<th>Pontuação</th>
 			<th>Aprovação</th>
 			<th>Crédito</th>
@@ -34,7 +33,6 @@ class CardList extends Component {
                 <td>{card.nome}</td>
                 <td>{card.email}</td>
                 <td>{card.renda}</td>
-                <td>{card.pedido_em}</td>
 				<td>{card.pontuacao}</td>
 				<td>{card.aprovacao}</td>
 				<td>{card.credito}</td>

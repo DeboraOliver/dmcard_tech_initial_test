@@ -16,10 +16,10 @@ class NewCardModal extends Component {
   render() {
     const create = this.props.create;
 
-    var title = "Editando Cartão";
-    var button = <Button onClick={this.toggle}>Edit</Button>;
+    var title = "Editando seu Pedido";
+    var button = <Button onClick={this.toggle}>Edite</Button>;
     if (create) {
-      title = "Criando Novo Cartão";
+      title = "Solicite seu Cartão";
 
       button = (
         <Button
@@ -28,7 +28,7 @@ class NewCardModal extends Component {
           onClick={this.toggle}
           style={{ minWidth: "200px" }}
         >
-          Create New
+          Novo Cartão
         </Button>
       );
     }
@@ -43,7 +43,7 @@ class NewCardModal extends Component {
             <NewCardForm
               resetState={this.props.resetState}
               toggle={this.toggle}
-              card={this.props.card}
+              cartao={this.props.cartao}
             />
           </ModalBody>
         </Modal>

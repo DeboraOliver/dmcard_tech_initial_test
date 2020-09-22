@@ -14,8 +14,8 @@ class NewCardForm extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.card) {
-      const { pk, nome, renda, email} = this.props.card;
+    if (this.props.cartao) {
+      const { pk, nome, renda, email} = this.props.cartao;
       this.setState({ pk, nome, renda, email});
     }
   }
@@ -24,7 +24,7 @@ class NewCardForm extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  createcard = e => {
+  createCartao = e => {
     e.preventDefault();
     axios.post(API_URL, this.state).then(() => {
       this.props.resetState();
@@ -32,7 +32,7 @@ class NewCardForm extends React.Component {
     });
   };
 
-  editcard = e => {
+  editCartao = e => {
     e.preventDefault();
     axios.put(API_URL + this.state.pk, this.state).then(() => {
       this.props.resetState();
@@ -46,7 +46,7 @@ class NewCardForm extends React.Component {
 
   render() {
     return (
-      <Form onSubmit={this.props.card ? this.editCard : this.createCard}>
+      <Form onSubmit={this.props.cartao ? this.editCartao : this.createCartao}>
         <FormGroup>
           <Label for="nome">Nome:</Label>
           <Input
