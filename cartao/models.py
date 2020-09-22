@@ -1,14 +1,11 @@
 from django.db import models
 #from .utils import pontuacao_credito,aprovacao
 
-def pontuacao_credito(self):
-    pass
-
 
 class Cartao(models.Model):
     nome = models.CharField("Nome", max_length = 200)
     email = models.EmailField()
-    renda = models.IntegerField("Renda", blank=False)
+    renda = models.CharField("Renda", blank=False, max_length=7)
     #pontuacao = models.CharField("pontuacao",max_length=3, editable= False ,default= pontuacao_credito(self))#default
     #aprovado = models.BooleanField("aprovado",editable=False, default= aprovacao(self)) #default
     #credito = models.FloatField("credito", editable=False)
@@ -30,13 +27,13 @@ class Cartao(models.Model):
     def credito_dado(self):
         "Crédito do cliente"
         if int (self.pontuacao_credito) <= 299:
-            return 0 * self.renda
+            return 0 * int(self.renda)
         elif (int (self.pontuacao_credito) >= 300) and (int (self.pontuacao_credito) <= 599):
             return 1000
         elif (int (self.pontuacao_credito) >= 600) and (int (self.pontuacao_credito) <= 799):
-            return self.renda * (1 + 0.5)
+            return int(self.renda) * (1 + 0.5)
         elif (int (self.pontuacao_credito) >= 800) and (int (self.pontuacao_credito) <= 950):
-            return 2 * self.renda
+            return 2 * int(self.renda)
         else:
             return 1000000
 
