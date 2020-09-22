@@ -22,7 +22,7 @@ from django.conf.urls import url #talvez tirar
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', include('cartao.urls')),
-	path('', include('cartaopedido.urls')),
+	#path('', include('cartaopedido.urls')),
 
 
 ]

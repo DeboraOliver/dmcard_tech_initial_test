@@ -1,44 +1,50 @@
 from django.db import models
-#from .utils import pontuacao_credito,aprovacao
+from datetime import datetime
 
 
 class Cartao(models.Model):
     nome = models.CharField("Nome", max_length = 200)
     email = models.EmailField()
     renda = models.CharField("Renda", blank=False, max_length=7)
-    #pontuacao = models.CharField("pontuacao",max_length=3, editable= False ,default= pontuacao_credito(self))#default
-    #aprovado = models.BooleanField("aprovado",editable=False, default= aprovacao(self)) #default
-    #credito = models.FloatField("credito", editable=False)
-    pedido_em = models.DateTimeField("pedido_em", auto_now_add=True)
+    pontuacao = models.IntegerField("Pontuação",max_length=3, editable= False ,default= 0)#default
+    aprovacao = models.BooleanField("Aprovado", editable=False, default= False) #default
+    credito = models.FloatField("Crédito", editable=False, default = 0)
+    pedido_em = models.DateTimeField("Pedido em", auto_now=True)
 
-    def pontuacao(self):
-        "Pontuação "
+
+
+    def save(self, *args, **kwargs):
         import random
-        self.pontuacao_credito = random.randint (1, 999)
-        return self.pontuacao_credito
-
-    def aprovacao(self):
-        "Cartão "
-        if int (self.pontuacao_credito) <= 299:
-            return "Não Aprovado"
+        self.pontuacao = random.randint (1, 999)
+        if int(self.pontuacao <= 299):
+            self.aprovacao = False
+            self.credito = 0
         else:
-            return "Aprovado"
+            self.aprovacao = True
+            if (int (self.pontuacao) >= 300) and (int (self.pontuacao) <= 599):
+                self.credito = 1000
+            elif (int (self.pontuacao) >= 600) and (int (self.pontuacao) <= 799):
+                self.credito = int(self.renda) * (1 + 0.5)
+            elif (int (self.pontuacao) >= 800) and (int (self.pontuacao) <= 950):
+                self.credito = 2 * int (self.renda)
+            else:
+                self.credito = 1000000
+        super ().save (*args, **kwargs)
 
-    def credito_dado(self):
+
+    def get_credito(self):
         "Crédito do cliente"
-        if int (self.pontuacao_credito) <= 299:
+        if int (self.pontuacao) <= 299:
             return 0 * int(self.renda)
-        elif (int (self.pontuacao_credito) >= 300) and (int (self.pontuacao_credito) <= 599):
-            return 1000
-        elif (int (self.pontuacao_credito) >= 600) and (int (self.pontuacao_credito) <= 799):
-            return int(self.renda) * (1 + 0.5)
-        elif (int (self.pontuacao_credito) >= 800) and (int (self.pontuacao_credito) <= 950):
-            return 2 * int(self.renda)
-        else:
-            return 1000000
+
+
+    def get_pedido_em(self):
+        return self.pedido_em.strftime('%Y-%m-%dT%H:%M')
 
     def __str__(self):
         return self.nome
+
+
 
 
 
