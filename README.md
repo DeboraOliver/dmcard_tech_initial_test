@@ -12,6 +12,8 @@ Deve se criar uma aplicação que permitirá a solicitação de um cartão de cr
 
 O backend foi desenvolvido em Python utilizando o django rest framework, que permitirá a utilização dos métodos GET, POST e DELETE. Esta construção foi possível através do <em>serializer.py</em>:
 
+<img src="api_rest2.png">
+
 	class CartaoSerializer(serializers.ModelSerializer):
 
     		class Meta:
