@@ -10,5 +10,5 @@ Deve se criar uma aplicação que permitirá a solicitação de um cartão de cr
 
 O backend foi desenvolvido em Python utilizando o django rest framework.
 
-https://blog.logrocket.com/creating-an-app-with-react-and-django/
+
          
