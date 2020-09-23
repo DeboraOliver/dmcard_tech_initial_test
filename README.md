@@ -10,9 +10,12 @@ Deve se criar uma aplicação que permitirá a solicitação de um cartão de cr
 ## Backend
 
 
+![alt  text](https://github.com/DeboraOliver/dmcard_tech_initial_test/blob/master/api_rest2.PNG?raw=true)
+
+
+
 O backend foi desenvolvido em Python utilizando o django rest framework, que permitirá a utilização dos métodos GET, POST e DELETE. Esta construção foi possível através do <em>serializer.py</em>:
 
-<img src="api_rest2.png">
 
 	class CartaoSerializer(serializers.ModelSerializer):
 
@@ -35,7 +38,7 @@ O acesso à estas duas views, pode ser encontrada no arquivo <em>urls.py</em>:
 	urlpatterns = [
     		path('api/cartao/', views.CartaoListCreate.as_view() ),
     		path('api/cartao/<int:pk>', views.CartaoDetail.as_view() ),
-]
+		]
 
 Os campos da nossa API (nome do usuário, renda etc), poderiam ser desenvolvidos de duas forma:
 
@@ -43,6 +46,10 @@ Os campos da nossa API (nome do usuário, renda etc), poderiam ser desenvolvidos
 <li>Diretamente no <em>serializer.py</em>; ou</li>
 <li>No <em>models.py</em>;</li> 
 </ol>
+
+![alt text](https://github.com/DeboraOliver/dmcard_tech_initial_test/blob/master/botoes.PNG?raw=true)
+
+
 
 Eu optei pela segunda opção:
 
