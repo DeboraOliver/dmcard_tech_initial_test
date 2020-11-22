@@ -5,6 +5,7 @@ from datetime import datetime
 class Cartao(models.Model):
     nome = models.CharField("Nome", max_length = 200)
     email = models.EmailField()
+    cpf = models.CharField("CPF",max_length = 15)
     renda = models.CharField("Renda", blank=False, max_length=7)
     pontuacao = models.IntegerField("Pontuação", editable= False ,default= 0)#default
     aprovacao = models.CharField("Cartão", editable=False, max_length= 15, default="Reprovado") #default

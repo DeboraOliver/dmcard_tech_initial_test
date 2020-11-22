@@ -11,5 +11,5 @@ class CartaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cartao
         #exclude = ()
-        fields = ('pk', 'nome','email','renda','pedido_em','pontuacao','aprovacao','credito')
+        fields = ('pk', 'nome','cpf','email','renda','pedido_em','pontuacao','aprovacao','credito')
 

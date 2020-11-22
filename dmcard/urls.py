@@ -18,10 +18,13 @@ from django.urls import path, include
 from cartao import views
 from django.conf.urls import url #talvez tirar
 
+from .views import index
+
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', include('cartao.urls')),
+    path('', index, name='index'),
 	#path('', include('cartaopedido.urls')),
 
 
